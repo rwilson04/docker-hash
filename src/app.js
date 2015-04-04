@@ -93,7 +93,13 @@ function route(path) {
 	console.log("routing: " + path);
 	var components = path.split("/");
 	var base = components[0];
-	if (base === "favicon.ico") {
+	console.log("base:", base);
+	if (base === "") {
+		app.response.writeHeader(200, {"Content-Type": "text/html"});
+		var text = "<a href='http://shinymayhem.github.io/docker-hash/'>Link</a>";
+		app.response.write(text);
+		return;
+	} else if (base === "favicon.ico") {
 		console.log("skipping favicon");
 		return "";
 	}
